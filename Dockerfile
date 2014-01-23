@@ -13,6 +13,7 @@ RUN apt-get install -qq -y curl openjdk-6-jdk
 
 ADD lein /usr/local/bin/lein
 RUN chmod 0755 /usr/local/bin/lein
+RUN su lein -c "lein version"
 
 ENV     HOME /home/lein
 WORKDIR /home/lein

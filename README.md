@@ -23,7 +23,7 @@ If you want to work in the REPL temporarily:
 
 If you want to load and run an app with leiningen:
 
-    docker run -t -i \
+    docker run -d \
       -v ~/projects/foo:/home/lein/foo \
       -w /home/lein/foo \
       -p 3000:3000 \

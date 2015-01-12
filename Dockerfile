@@ -3,18 +3,13 @@
 # This container provides an environment for running Clojure
 # apps via Leiningen, nothing else.
 
-FROM       ubuntu
+FROM       d11wtq/ubuntu:14.04
 MAINTAINER Chris Corbyn
 
-RUN useradd -m -s /bin/bash lein
-RUN echo lein:lein | chpasswd
+RUN sudo apt-get update -qq -y
+RUN sudo apt-get install -qq -y curl openjdk-6-jdk
 
-RUN apt-get install -qq -y curl openjdk-6-jdk
-
-ADD lein /usr/local/bin/lein
-RUN chmod 0755 /usr/local/bin/lein
-RUN su lein -c "lein version"
-
-ENV     HOME /home/lein
-WORKDIR /home/lein
-USER    lein
+ADD https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein \
+    /usr/local/bin/lein
+RUN sudo chmod 0755 /usr/local/bin/lein
+RUN lein version
